@@ -1,7 +1,33 @@
 .dashboard-wrapper {
-  background-color: #ededed;
+  /* background-color: #ededed; */
+  background-color: #f5f2f7;
   height: 100%;
   min-height: calc(100vh - 80px);
   padding-top: 2rem;
   padding-bottom: 2rem;
+}
+
+.dashboard-wrapper h6 {
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.dashboard-wrapper h5 {
+  font-weight: 600;
+}
+
+.dashboard-wrapper .card {
+  border: none;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
+  min-height: 30vh;
+  margin-bottom: 1rem;
+}
+
+.dashboard-wrapper .card-header {
+  min-height: 8vh;
+}
+
+.dashboard-wrapper .card:hover {
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+  transition: 0.3s ease-in-out;
 }

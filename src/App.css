@@ -1,0 +1,13 @@
+.btn-grape {
+  background-color: #5a11ff;
+  color: white;
+}
+
+.btn-grape:hover {
+  background-color: #5811ffd1;
+  color: white;
+}
+
+.bg-grape {
+  background-color: #5811ffd1 !important;
+}
