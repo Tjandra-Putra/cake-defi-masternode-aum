@@ -97,6 +97,7 @@ const Dashboard = () => {
 
       <div className="container">
         <div className="coin-wrapper">
+          <h1 className="coin-header">Dashboard</h1>
           <select className="form-select" value={selectedCurrency} onChange={handleSelectCurrency}>
             <option value="usd">Set Currency: USD (Default)</option>
             <option value="eur">EUR</option>
@@ -143,7 +144,7 @@ const Dashboard = () => {
                   <h4 className="card-header pt-3">Summary</h4>
                   <div className="card-body">
                     <React.Fragment>
-                      <h6>TOTAL AUM</h6>
+                      <h6>Total AUM</h6>
                       <p>
                         {parseFloat(totalAUM).toLocaleString()} {selectedCurrency}
                       </p>
