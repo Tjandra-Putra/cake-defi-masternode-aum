@@ -15,7 +15,7 @@ const Dashboard = () => {
   const [activeDashNodes, setActiveDashNodes] = useState(0);
   const [activeDefiNodes, setActiveDefiNodes] = useState(0);
   const [totalAUM, setTotalAUM] = useState(0);
-  const [currency, setCurrency] = useState("usd");
+  const [selectedCurrency, setSelectedCurrency] = useState("usd");
 
   useEffect(() => {
     getPrices();
@@ -23,7 +23,7 @@ const Dashboard = () => {
   }, []);
 
   const getPrices = () => {
-    const pricesAPI = "https://api.coingecko.com/api/v3/simple/price?ids=dash,defichain&vs_currencies=usd";
+    const pricesAPI = "https://api.coingecko.com/api/v3/simple/price?ids=dash,defichain&vs_currencies=usd,eur,sgd,btc";
 
     axios
       .get(pricesAPI)
@@ -48,7 +48,8 @@ const Dashboard = () => {
 
   const calculateDashPrice = () => {
     if (prices && nodes) {
-      const dashPrice = prices.dash.usd;
+      const dashPrice = prices.dash[selectedCurrency];
+      // console.log(`=========== Currency: ${selectedCurrency}, DashPrice: ${dashPrice}`);
       const activeDashNodes = nodes.filter((node) => node.coin === "Dash" && node.status === "ACTIVE");
       const dashNodesValue = activeDashNodes.reduce((total, node) => total + 1000, 0);
       const dashValue = dashNodesValue * dashPrice;
@@ -60,7 +61,8 @@ const Dashboard = () => {
 
   const calculateDefiPrice = () => {
     if (prices && nodes) {
-      const defiPrice = prices.defichain.usd;
+      const defiPrice = prices.defichain[selectedCurrency];
+      // console.log(`=========== Currency: ${selectedCurrency}, DeFi =Price: ${defiPrice}`);
       const activeDefiNodes = nodes.filter((node) => node.coin === "DeFi" && node.status === "ACTIVE");
       const defiNodesValue = activeDefiNodes.reduce((total, node) => total + 20000, 0);
       const defiNodesPrice = defiNodesValue * defiPrice;
@@ -76,34 +78,38 @@ const Dashboard = () => {
     }
   };
 
+  const handleSelectCurrency = (e) => {
+    setSelectedCurrency(e.target.value);
+  };
+
   useEffect(() => {
     calculateDashPrice();
     calculateDefiPrice();
     calculateTotalAUM();
-  }, [prices, nodes, totalAUM]);
+  }, [prices, nodes, totalAUM, calculateDashPrice, calculateDefiPrice]);
 
   return (
     <div className="dashboard-wrapper">
       <div className="container">
         <div className="coin-wrapper">
-          <select class="form-select" aria-label="Default select example">
-            <option selected>Currency: USD (Default)</option>
-            <option value="1">One</option>
-            <option value="2">Two</option>
-            <option value="3">Three</option>
+          <select className="form-select" value={selectedCurrency} onChange={handleSelectCurrency}>
+            <option value="usd">Set Currency: USD (Default)</option>
+            <option value="eur">EUR</option>
+            <option value="sgd">SGD</option>
+            <option value="btc">BTC</option>
           </select>
 
           <div className="row">
             <div className="col-md-5">
               {prices && nodes ? (
                 <Card
-                  currentPrice={prices.dash.usd}
+                  currentPrice={prices.dash[selectedCurrency]}
                   nodesPrice={dashNodesPrice}
                   nodesValue={dashNodesValue}
                   coinName="Dash"
                   isActive={nodes[0].status}
                   coinCurrency="DASH"
-                  currency={currency}
+                  currency={selectedCurrency}
                   activeNodes={activeDashNodes}
                 />
               ) : (
@@ -113,13 +119,13 @@ const Dashboard = () => {
             <div className="col-md-5">
               {prices && nodes ? (
                 <Card
-                  currentPrice={prices.defichain.usd}
+                  currentPrice={prices.defichain[selectedCurrency]}
                   nodesPrice={defiNodesPrice}
                   nodesValue={defiNodesValue}
                   coinName="DeFi"
                   isActive={nodes[0].status}
                   coinCurrency="DFI"
-                  currency={currency}
+                  currency={selectedCurrency}
                   activeNodes={activeDefiNodes}
                 />
               ) : (
@@ -127,24 +133,24 @@ const Dashboard = () => {
               )}
             </div>
             <div className="col-md-2">
-              <div className="card">
-                <h4 className="card-header pt-3">Summary</h4>
-                <div className="card-body">
-                  {prices && nodes ? (
+              {prices && nodes ? (
+                <div className="card">
+                  <h4 className="card-header pt-3">Summary</h4>
+                  <div className="card-body">
                     <React.Fragment>
                       <h6>TOTAL AUM</h6>
                       <p>
-                        {parseFloat(totalAUM).toLocaleString()} {currency}
+                        {parseFloat(totalAUM).toLocaleString()} {selectedCurrency}
                       </p>
 
                       <h6>Total Nodes</h6>
                       <p>{(activeDashNodes + activeDefiNodes).toLocaleString()}</p>
                     </React.Fragment>
-                  ) : (
-                    "Loading..."
-                  )}
+                  </div>
                 </div>
-              </div>
+              ) : (
+                "Loading..."
+              )}
             </div>
           </div>
         </div>
