@@ -1,6 +1,7 @@
 import { React, useState, useEffect } from "react";
 
 import Pagination from "../Pagination/Pagination";
+import "./Table.css";
 
 const Table = ({ nodes }) => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -31,19 +32,13 @@ const Table = ({ nodes }) => {
         <div className="card-body">
           <div className="d-flex flex-row">
             <h4 className="ms-2">All Masternodes</h4>
-            {/* <select className="form-select" value={null} onChange={null}>
-              <option value="usd">Set Currency: USD (Default)</option>
-              <option value="eur">EUR</option>
-              <option value="sgd">SGD</option>
-              <option value="btc">BTC</option>
-            </select> */}
           </div>
 
           <div className="table-responsive">
             <table class="table">
               <thead>
                 <tr>
-                  <th scope="col">#</th>
+                  {/* <th scope="col">#</th> */}
                   <th scope="col">Id</th>
                   <th scope="col">Coin</th>
                   <th scope="col">Type</th>
@@ -54,7 +49,7 @@ const Table = ({ nodes }) => {
               </thead>
               <tbody>
                 {currentNode.map((node, index) => {
-                  const actualIndex = index + (currentPage - 1) * nodesPerPage;
+                  const actualIndex = index + 1 + (currentPage - 1) * nodesPerPage;
 
                   return (
                     <tr key={index}>

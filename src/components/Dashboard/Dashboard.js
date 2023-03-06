@@ -93,7 +93,7 @@ const Dashboard = () => {
 
     // When any of the dependencies in the array change, the effect will re-run.
     // If the array is empty, the effect will only run once after the initial render.
-  }, [prices, nodes, totalAUM, calculateDashPrice, calculateDefiPrice]);
+  }, [prices, nodes, totalAUM, calculateDashPrice, calculateDefiPrice, defiNodesPrice, dashNodesPrice]);
 
   return (
     <div className="dashboard-wrapper">
@@ -165,11 +165,34 @@ const Dashboard = () => {
           </div>
         </div>
         <div className="chart-wrapper">
-          {prices && nodes ? (
-            <Chart nodes={nodes} dashNodesPrice={dashNodesPrice} defiNodesPrice={defiNodesPrice} />
-          ) : (
-            "Loading..."
-          )}
+          <div className="row">
+            <div className="col-md-8">
+              {prices && nodes ? (
+                <Chart
+                  nodes={nodes}
+                  dashNodesPrice={dashNodesPrice}
+                  defiNodesPrice={defiNodesPrice}
+                  title="Total Nodes Price"
+                  chartType="bar"
+                />
+              ) : (
+                "Loading..."
+              )}
+            </div>
+            <div className="col-md-4">
+              {prices && nodes ? (
+                <Chart
+                  nodes={nodes}
+                  dashNodesPrice={prices.dash[selectedCurrency]}
+                  defiNodesPrice={prices.defichain[selectedCurrency]}
+                  title="Current Coin Prices"
+                  chartType="pie"
+                />
+              ) : (
+                "Loading..."
+              )}
+            </div>
+          </div>
         </div>
 
         <div className="table-wrapper">{prices && nodes ? <Table nodes={nodes} /> : "Loading..."}</div>
