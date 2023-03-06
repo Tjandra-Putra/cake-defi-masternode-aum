@@ -1,13 +1,11 @@
 import "./Card.css";
 
-import dashImage from "../../assets/image/dash.png";
-
-const Card = ({ currentPrice, nodesPrice, coinName, isActive, nodesValue, coinCurrency, currency }) => {
+const Card = ({ currentPrice, nodesPrice, coinName, isActive, nodesValue, coinCurrency, currency, activeNodes }) => {
   return (
     <div className="card-wrapper">
-      <div class="card">
+      <div className="card">
         <div className="card-header">
-          <div class="d-flex flex-row justify-content-between">
+          <div className="d-flex flex-row justify-content-between">
             <div>
               <div className="d-flex flex-row">
                 <div>
@@ -16,7 +14,7 @@ const Card = ({ currentPrice, nodesPrice, coinName, isActive, nodesValue, coinCu
                       xmlns="http://www.w3.org/2000/svg"
                       width="32"
                       height="32"
-                      class="injected-svg"
+                      className="injected-svg"
                       data-src="/static/media/icon-coin-dash.992004d7.svg"
                     >
                       <g fill="none">
@@ -39,7 +37,7 @@ const Card = ({ currentPrice, nodesPrice, coinName, isActive, nodesValue, coinCu
                       xmlns="http://www.w3.org/2000/svg"
                       width="32"
                       height="32"
-                      class="injected-svg"
+                      className="injected-svg"
                       data-src="/static/media/icon-coin-dfi.12257591.svg"
                     >
                       <g fill="none" fill-rule="evenodd">
@@ -59,26 +57,26 @@ const Card = ({ currentPrice, nodesPrice, coinName, isActive, nodesValue, coinCu
             </div>
             <div>
               {isActive === "ACTIVE" ? (
-                <div class="badge bg-grape ms-2">{isActive}</div>
+                <div className="badge bg-grape ms-2">{isActive}</div>
               ) : (
-                <div class="badge bg-secondary ms-2">INACTIVE</div>
+                <div className="badge bg-secondary ms-2">INACTIVE</div>
               )}
             </div>
           </div>
         </div>
 
-        <div class="card-body">
+        <div className="card-body">
           <div className="row">
             <div className="col">
               <h6>Total Nodes Price</h6>
               <p>
-                {nodesPrice} {currency}
+                {parseFloat(nodesPrice).toLocaleString()} {currency}
               </p>
             </div>
             <div className="col">
               <h6>Total Nodes Value</h6>
               <p>
-                {nodesValue} {coinCurrency}
+                {nodesValue.toLocaleString()} {coinCurrency}
               </p>
             </div>
           </div>
@@ -88,6 +86,10 @@ const Card = ({ currentPrice, nodesPrice, coinName, isActive, nodesValue, coinCu
               <p>
                 {currentPrice} {currency}
               </p>
+            </div>
+            <div className="col">
+              <h6>Active Nodes Count</h6>
+              <p>{activeNodes.toLocaleString()}</p>
             </div>
           </div>
         </div>

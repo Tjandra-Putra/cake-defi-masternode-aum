@@ -12,6 +12,8 @@ const Dashboard = () => {
   const [defiNodesPrice, setDefiNodesPrice] = useState(0);
   const [dashNodesValue, setDashNodesValue] = useState(0);
   const [defiNodesValue, setDefiNodesValue] = useState(0);
+  const [activeDashNodes, setActiveDashNodes] = useState(0);
+  const [activeDefiNodes, setActiveDefiNodes] = useState(0);
   const [totalAUM, setTotalAUM] = useState(0);
   const [currency, setCurrency] = useState("usd");
 
@@ -52,6 +54,7 @@ const Dashboard = () => {
       const dashValue = dashNodesValue * dashPrice;
       setDashNodesPrice(dashValue.toFixed(2));
       setDashNodesValue(dashNodesValue);
+      setActiveDashNodes(activeDashNodes.length);
     }
   };
 
@@ -63,6 +66,7 @@ const Dashboard = () => {
       const defiNodesPrice = defiNodesValue * defiPrice;
       setDefiNodesPrice(defiNodesPrice.toFixed(2));
       setDefiNodesValue(defiNodesValue);
+      setActiveDefiNodes(activeDefiNodes.length);
     }
   };
 
@@ -82,6 +86,13 @@ const Dashboard = () => {
     <div className="dashboard-wrapper">
       <div className="container">
         <div className="coin-wrapper">
+          <select class="form-select" aria-label="Default select example">
+            <option selected>Currency: USD (Default)</option>
+            <option value="1">One</option>
+            <option value="2">Two</option>
+            <option value="3">Three</option>
+          </select>
+
           <div className="row">
             <div className="col-md-5">
               {prices && nodes ? (
@@ -93,6 +104,7 @@ const Dashboard = () => {
                   isActive={nodes[0].status}
                   coinCurrency="DASH"
                   currency={currency}
+                  activeNodes={activeDashNodes}
                 />
               ) : (
                 "Loading..."
@@ -108,24 +120,25 @@ const Dashboard = () => {
                   isActive={nodes[0].status}
                   coinCurrency="DFI"
                   currency={currency}
+                  activeNodes={activeDefiNodes}
                 />
               ) : (
                 "Loading..."
               )}
             </div>
             <div className="col-md-2">
-              <div class="card">
-                <h4 class="card-header pt-3">Summary</h4>
-                <div class="card-body">
+              <div className="card">
+                <h4 className="card-header pt-3">Summary</h4>
+                <div className="card-body">
                   {prices && nodes ? (
                     <React.Fragment>
                       <h6>TOTAL AUM</h6>
                       <p>
-                        {totalAUM} {currency}
+                        {parseFloat(totalAUM).toLocaleString()} {currency}
                       </p>
 
                       <h6>Total Nodes</h6>
-                      <p>{nodes.length}</p>
+                      <p>{(activeDashNodes + activeDefiNodes).toLocaleString()}</p>
                     </React.Fragment>
                   ) : (
                     "Loading..."
@@ -136,7 +149,11 @@ const Dashboard = () => {
           </div>
         </div>
         <div className="chart-wrapper">
-          <Chart />
+          {prices && nodes ? (
+            <Chart nodes={nodes} dashNodesPrice={dashNodesPrice} defiNodesPrice={defiNodesPrice} />
+          ) : (
+            "Loading..."
+          )}
         </div>
       </div>
     </div>
