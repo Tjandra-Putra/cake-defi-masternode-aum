@@ -46,7 +46,9 @@ const Chart = ({ nodes, dashNodesPrice, defiNodesPrice }) => {
     <div className="chart-wrapper mt-3">
       <div className="card">
         <div className="card-body">
-          <Bar style={{ padding: "20px", width: "100%" }} data={data} options={options}></Bar>
+          <h4 className="ms-2">Total Nodes Price</h4>
+
+          <Bar style={{ padding: "10px", width: "100%" }} data={data} options={options}></Bar>
         </div>
       </div>
     </div>

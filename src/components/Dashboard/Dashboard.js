@@ -5,6 +5,7 @@ import toast, { Toaster } from "react-hot-toast";
 import "./Dashboard.css";
 import Card from "../Card/Card";
 import Chart from "../Chart/Chart";
+import Table from "../Table/Table";
 
 const Dashboard = () => {
   const [prices, setPrices] = useState(0);
@@ -89,6 +90,9 @@ const Dashboard = () => {
     calculateDashPrice();
     calculateDefiPrice();
     calculateTotalAUM();
+
+    // When any of the dependencies in the array change, the effect will re-run.
+    // If the array is empty, the effect will only run once after the initial render.
   }, [prices, nodes, totalAUM, calculateDashPrice, calculateDefiPrice]);
 
   return (
@@ -167,6 +171,8 @@ const Dashboard = () => {
             "Loading..."
           )}
         </div>
+
+        <div className="table-wrapper">{prices && nodes ? <Table nodes={nodes} /> : "Loading..."}</div>
       </div>
     </div>
   );
