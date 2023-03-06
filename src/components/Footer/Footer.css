@@ -1,0 +1,19 @@
+.footer-wrapper {
+  height: 10rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: white;
+  background-color: black;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 1.2rem;
+}
+
+.footer-wrapper a {
+  text-decoration: none !important;
+  color: white;
+  font-weight: 600;
+}

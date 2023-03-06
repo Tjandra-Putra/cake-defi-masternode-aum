@@ -20,21 +20,31 @@ const Navbar = () => {
             <div className="navbar-brand" href="#">
               Cake Defi
             </div>
-            <ul className="navbar-nav me-auto mb-lg-0">
-              {/* <li className="nav-item">
+            {/* <ul className="navbar-nav me-auto mb-lg-0">
+              <li className="nav-item">
                 <a className="nav-link active" aria-current="page" href="#">
-                  Home
+                  Made with love
                 </a>
-              </li> */}
-            </ul>
+              </li>
+            </ul> */}
             <ul className="navbar-nav ms-auto mb-lg-0">
               <li className="nav-item">
-                <a className="nav-link" href="#">
+                <a className="nav-link" href="https://tjandra-putra.github.io/" target="_blank" rel="noopener">
+                  Portfolio
+                </a>
+              </li>
+              <li className="nav-item">
+                <a
+                  className="nav-link"
+                  href="https://www.linkedin.com/in/tjandra-putra/"
+                  target="_blank"
+                  rel="noopener"
+                >
                   LinkedIn
                 </a>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="#">
+                <a className="nav-link" href="https://github.com/Tjandra-Putra" target="_blank" rel="noopener">
                   Github
                 </a>
               </li>
