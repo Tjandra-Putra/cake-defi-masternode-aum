@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import toast, { Toaster } from "react-hot-toast";
 
 import "./Dashboard.css";
 import Card from "../Card/Card";
@@ -78,8 +79,10 @@ const Dashboard = () => {
     }
   };
 
+  // Change currency
   const handleSelectCurrency = (e) => {
     setSelectedCurrency(e.target.value);
+    toast.success(`Currency changed to ${e.target.value.toUpperCase()}`);
   };
 
   useEffect(() => {
@@ -90,6 +93,8 @@ const Dashboard = () => {
 
   return (
     <div className="dashboard-wrapper">
+      <Toaster position="top-center" reverseOrder={false} />
+
       <div className="container">
         <div className="coin-wrapper">
           <select className="form-select" value={selectedCurrency} onChange={handleSelectCurrency}>
