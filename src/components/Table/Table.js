@@ -39,44 +39,46 @@ const Table = ({ nodes }) => {
             </select> */}
           </div>
 
-          <table class="table">
-            <thead>
-              <tr>
-                <th scope="col">#</th>
-                <th scope="col">Id</th>
-                <th scope="col">Coin</th>
-                <th scope="col">Type</th>
-                <th scope="col">Amount</th>
-                <th scope="col">Reward received</th>
-                <th scope="col">status</th>
-              </tr>
-            </thead>
-            <tbody>
-              {currentNode.map((node, index) => {
-                const actualIndex = index + (currentPage - 1) * nodesPerPage;
+          <div className="table-responsive">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Id</th>
+                  <th scope="col">Coin</th>
+                  <th scope="col">Type</th>
+                  <th scope="col">Amount</th>
+                  <th scope="col">Reward received</th>
+                  <th scope="col">status</th>
+                </tr>
+              </thead>
+              <tbody>
+                {currentNode.map((node, index) => {
+                  const actualIndex = index + (currentPage - 1) * nodesPerPage;
 
-                return (
-                  <tr key={index}>
-                    <th scope="row">{actualIndex}</th>
-                    <td>{node.id}</td>
-                    <td>{node.coin}</td>
-                    <td>{node.type}</td>
-                    <td>
-                      {node.lastReward.amount.amount} {node.lastReward.amount.coin}
-                    </td>
-                    <td>{node.lastReward.createdAt.toLocaleString()}</td>
-                    <td>
-                      {node.status === "ACTIVE" ? (
-                        <span class="badge text-bg-success">{node.status}</span>
-                      ) : (
-                        <span class="badge text-bg-secondary">Inactive</span>
-                      )}
-                    </td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
+                  return (
+                    <tr key={index}>
+                      <th scope="row">{actualIndex}</th>
+                      <td>{node.id}</td>
+                      <td>{node.coin}</td>
+                      <td>{node.type}</td>
+                      <td>
+                        {node.lastReward.amount.amount} {node.lastReward.amount.coin}
+                      </td>
+                      <td>{node.lastReward.createdAt.toLocaleString()}</td>
+                      <td>
+                        {node.status === "ACTIVE" ? (
+                          <span class="badge text-bg-success fw-bolder">{node.status}</span>
+                        ) : (
+                          <span class="badge text-bg-secondary fw-bolder">Inactive</span>
+                        )}
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
 
           <Pagination
             nodesPerPage={nodesPerPage}

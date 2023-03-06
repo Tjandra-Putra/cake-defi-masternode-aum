@@ -29,13 +29,13 @@ const Chart = ({ nodes, dashNodesPrice, defiNodesPrice }) => {
         label: "Dash",
         data: [dashNodesPrice],
         borderColor: "rgb(255, 99, 132)",
-        backgroundColor: "rgba(255, 99, 132, 0.5)",
+        backgroundColor: "rgba(53, 162, 235, 0.5)",
       },
       {
         label: "DeFi",
         data: [defiNodesPrice],
         borderColor: "rgb(53, 162, 235)",
-        backgroundColor: "rgba(53, 162, 235, 0.5)",
+        backgroundColor: " rgb(254, 0, 174, 0.5)",
       },
     ],
   };
