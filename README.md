@@ -10,6 +10,18 @@ Overall, I am happy with the outcome of this project and appreciate the opportun
 
 Thank you for the exciting challenge and I look forward to hearing feedbacks. :) ~ Tjandra
 
+### Installation
+Installing dependencies 
+```sh
+> npm install --save
+```
+
+### Running the applicaton
+```sh
+> npm start
+```
+
+
 ### Resources
 | Tools | Description | Link |
 | :---         |     :---      |    :--- |
