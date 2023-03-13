@@ -8,7 +8,17 @@ I also went the extra mile and added a graphical representation of the AUM compa
 
 Overall, I am happy with the outcome of this project and appreciate the opportunity to work on it. 
 
-Thank you for the exciting challenge and I look forward to hearing feedbacks. :) ~ Tjandra
+### Installation
+Installing dependencies 
+```sh
+> npm install --save
+```
+
+### Running the applicaton
+```sh
+> npm start
+```
+
 
 ### Resources
 | Tools | Description | Link |
