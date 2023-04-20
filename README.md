@@ -1,4 +1,4 @@
-# Cake DeFi Challenge: Masternode assets under management
+# Masternode assets under management
 
 The project was challenging yet rewarding, and I learned a lot while working on it.
 
