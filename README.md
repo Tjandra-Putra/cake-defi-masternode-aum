@@ -2,11 +2,9 @@
 
 The project was challenging yet rewarding, and I learned a lot while working on it.
 
-Using the API you provided, I was able to present the USD value of all active Dash and DeFiChain assets, as well as the total AUM as a single number. Additionally, I was able to include the logos for Dash and DeFiChain, and users can choose other currencies to display the assets under management.
+Using the API, I was able to present the USD value of all active Dash and DeFiChain assets, as well as the total AUM as a single number. Additionally, I was able to include the logos for Dash and DeFiChain, and users can choose other currencies to display the assets under management.
 
 I also went the extra mile and added a graphical representation of the AUM comparison between Dash and DeFiChain using a pie chart.
-
-Overall, I am happy with the outcome of this project and appreciate the opportunity to work on it. 
 
 ### Installation
 Installing dependencies 
